@@ -4,7 +4,7 @@ import './styles.scss'
 
 class Character extends Component {    
     render(){
-        const { key, character } = this.props
+        const { character } = this.props
         return (
             <div className="item" key={character.id}>
                 <div className="checkDetails">
@@ -22,7 +22,8 @@ class Character extends Component {
 }
 
 Character.props = {
-    character: {}
+    character: {},
+    key:0
 }
 
 export default Character

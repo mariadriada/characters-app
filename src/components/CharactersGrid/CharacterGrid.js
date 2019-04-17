@@ -1,42 +1,42 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
+import { loadCharacters } from '../../actions'
 import Character from './Character'
 
 import './styles.scss'
 
-const URL = "https://rickandmortyapi.com/api/character"
+class CharacterGrid extends Component {   
 
-
-class CharacterGrid extends Component {
-   
-    state = {
-        characters: []
-    }
-
-    async componentDidMount() {
-        await fetch(`${URL}`)
-
-        .then(res => res.json())
-        .then(images => {
-            this.setState({
-                characters: images.results
-            })
-        })
+    componentDidMount() {
+        this.props.loadCharacters()
     }
 
     render(){
-        const { characters } = this.state
+        const { characters } = this.props;
         return(
             <div className="contentChatacters">
                 <div className="grid">
                     {characters.map(character => (
-                       <Character character={character} />
+                       <Character character={character} key={character.id}/>
                     ))}
                 </div>
             </div>
         )
-    }
-  
+    }  
 }
 
-export default CharacterGrid
+const mapStateToProps = ({isLoading, characters, error }) => ({
+    isLoading,
+    characters,
+    error,
+})
+
+const mapDispatchToProps = dispatch => ({
+    loadCharacters: () => dispatch(loadCharacters()) 
+})
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(CharacterGrid)
