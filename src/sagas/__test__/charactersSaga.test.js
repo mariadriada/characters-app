@@ -9,8 +9,8 @@ describe('When do request to Characters ', () => {
 
     test('Should load characters and handle them in case of success', async () => {
        
-        // Dispached actions
-        const dispachedActions = []
+        // Dispatched actions
+        const dispatchedActions = []
         // Data to test fake api request
         const mockedCharacters = [{ id:1, name:'test_img1'}, { id:2, name:'test_img2'}]        
       
@@ -19,20 +19,20 @@ describe('When do request to Characters ', () => {
         
         // Simulate store
         const fakeStore = {
-            dispatch: (action) => dispachedActions.push(action)
+            dispatch: (action) => dispatchedActions.push(action)
         }        
       
         await runSaga(fakeStore, handleCharactersLoad).done 
         // Should make one call to api   
         expect(api.fetchCharacters.mock.calls.length).toBe(1)
         // Should contains mocked characters
-        expect(dispachedActions).toContainEqual(setCharacters(mockedCharacters))
+        expect(dispatchedActions).toContainEqual(setCharacters(mockedCharacters))
     }) 
 
     test('Should load error in case of fail', async () => {
        
-        // Dispached actions
-        const dispachedActions = []
+        // Disptached actions
+        const dispatchedActions = []
         // Fake error
         const error = 'Some error is throw'      
       
@@ -41,13 +41,13 @@ describe('When do request to Characters ', () => {
         
         // Simulate store
         const fakeStore = {            
-            dispatch: (action) => dispachedActions.push(action)
+            dispatch: (action) => dispatchedActions.push(action)
         }        
       
         await runSaga(fakeStore, handleCharactersLoad).done 
         // Should make one call to api   
         expect(api.fetchCharacters.mock.calls.length).toBe(1)
-        // Should contains mocked characters
-        expect(dispachedActions).toContainEqual(setError(error))
+        // Should contains the error
+        expect(dispatchedActions).toContainEqual(setError(error))
     })
 })
