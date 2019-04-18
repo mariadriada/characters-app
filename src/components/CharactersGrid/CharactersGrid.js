@@ -6,21 +6,23 @@ import Character from './Character'
 
 import './styles.scss'
 
-class CharacterGrid extends Component {   
+class CharactersGrid extends Component {   
 
     componentDidMount() {
         this.props.loadCharacters()
     }
 
     render(){
-        const { characters } = this.props;
+        const { characters, error, isLoading } = this.props;
         return(
             <div className="contentChatacters">
-                <div className="grid">
+                <section className="grid">
                     {characters.map(character => (
                        <Character character={character} key={character.id}/>
                     ))}
-                </div>
+                </section>
+                { isLoading && <div className="loading">...loading...</div> }
+                { error && <div className="error">{JSON.stringify(error)}</div> }                   
             </div>
         )
     }  
@@ -39,4 +41,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(CharacterGrid)
+)(CharactersGrid)

@@ -1,3 +1,3 @@
-import CharactersGrid from './CharacterGrid'
+import CharactersGrid from './CharactersGrid'
 
 export default CharactersGrid
