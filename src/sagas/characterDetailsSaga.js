@@ -1,4 +1,4 @@
-import { take, takeEvery, call, fork, put } from 'redux-saga/effects';
+import { take, call, fork, put } from 'redux-saga/effects';
 
 import { CHARACTERS, DETAILS } from '../constants'
 import { fetchCharacterDetails } from '../api'
@@ -6,7 +6,8 @@ import {
     loadCharacterDetails, 
     setCharacterDetails, 
     setCharacterDetailsError,
-    addToDetails 
+    addToDetails,
+    removeToDetails
 } from '../actions';
 
 export function* handleCharacterDetailsRequest(id){    
@@ -27,8 +28,16 @@ export function* handleAddToDetails(id) {
     yield put(addToDetails(id))
 }
 
+export function* handleRemoveToDetails(id){
+    yield put(removeToDetails(id))
+}
+/*
+export function handleFilterCharactersDetails(){
+    console.log('handleFilterCharactersDetails')
+}*/
+
 export default function* watchCharacterDetailsRequest(){
-    while(true) {
+   // while(true) {
         //When load characters, request details 
         const { characters } = yield take(CHARACTERS.LOAD_SUCCESS)
 
@@ -37,7 +46,10 @@ export default function* watchCharacterDetailsRequest(){
             yield fork(handleCharacterDetailsRequest, characters[i].id)
         }
 
-        yield take(DETAILS.ADD, handleAddToDetails)
         
-    }
+        yield take(DETAILS.ADD, handleAddToDetails)
+        yield take(DETAILS.REMOVE, handleRemoveToDetails)
+        //yield take(DETAILS.FILTER, handleFilterCharactersDetails)
+        
+    //}
 }
