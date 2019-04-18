@@ -1,4 +1,4 @@
-import { CHARACTERS } from '../constants/index'
+import { CHARACTERS, DETAILS } from '../constants/index'
 
 const loadCharacters = () => ({
     type: CHARACTERS.LOAD
@@ -14,4 +14,26 @@ const setError = error => ({
     error
 })
 
-export { loadCharacters, setCharacters, setError }
+const loadCharacterDetails = () => ({
+    type: DETAILS.LOAD
+})
+
+const setCharacterDetails = (id, details) => ({
+    type: DETAILS.LOAD_SUCCESS,
+    id,
+    details
+})
+
+const setCharacterDetailsError = error => ({
+    type: DETAILS.LOAD_FAIL,
+    error
+})
+
+export { 
+    loadCharacters, 
+    setCharacters, 
+    setError, 
+    loadCharacterDetails, 
+    setCharacterDetails, 
+    setCharacterDetailsError 
+}
