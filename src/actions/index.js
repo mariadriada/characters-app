@@ -29,11 +29,17 @@ const setCharacterDetailsError = error => ({
     error
 })
 
+const addToDetails = id => ({
+    type: DETAILS.ADD,
+    id
+})
+
 export { 
     loadCharacters, 
     setCharacters, 
     setError, 
     loadCharacterDetails, 
     setCharacterDetails, 
-    setCharacterDetailsError 
+    setCharacterDetailsError,
+    addToDetails
 }

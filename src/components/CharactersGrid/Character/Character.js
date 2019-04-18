@@ -1,14 +1,17 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+
+import { addToDetails } from '../../../actions'
 
 import './styles.scss'
 
 class Character extends Component {    
     render(){
-        const { character } = this.props
+        const { character, addToDetails } = this.props
         return (
             <div className="item" key={character.id}>
                 <div className="checkDetails">
-                    <input type="checkbox" />More details
+                    <input type="checkbox" onClick={() => addToDetails(character.id)} />More details
                 </div>
                 <span>{character.name}</span>
                 
@@ -26,4 +29,11 @@ Character.props = {
     key:0
 }
 
-export default Character
+const mapDispatchToProps = dispatch => ({
+    addToDetails: (id) => dispatch(addToDetails(id)),    
+})
+
+export default connect(
+    null,
+    mapDispatchToProps
+)(Character)

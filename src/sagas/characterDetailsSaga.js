@@ -1,8 +1,13 @@
-import { take, call, fork, put } from 'redux-saga/effects';
+import { take, takeEvery, call, fork, put } from 'redux-saga/effects';
 
-import { CHARACTERS } from '../constants'
+import { CHARACTERS, DETAILS } from '../constants'
 import { fetchCharacterDetails } from '../api'
-import { loadCharacterDetails, setCharacterDetails, setCharacterDetailsError } from '../actions';
+import { 
+    loadCharacterDetails, 
+    setCharacterDetails, 
+    setCharacterDetailsError,
+    addToDetails 
+} from '../actions';
 
 export function* handleCharacterDetailsRequest(id){    
     // To attempt three times
@@ -18,6 +23,10 @@ export function* handleCharacterDetailsRequest(id){
     yield put(setCharacterDetailsError(id))   
 }
 
+export function* handleAddToDetails(id) {  
+    yield put(addToDetails(id))
+}
+
 export default function* watchCharacterDetailsRequest(){
     while(true) {
         //When load characters, request details 
@@ -27,5 +36,8 @@ export default function* watchCharacterDetailsRequest(){
         for (let i=0; i<characters.length; i++) {
             yield fork(handleCharacterDetailsRequest, characters[i].id)
         }
+
+        yield take(DETAILS.ADD, handleAddToDetails)
+        
     }
 }
