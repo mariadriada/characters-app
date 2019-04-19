@@ -38,12 +38,7 @@ const removeToDetails = id => ({
     type: DETAILS.REMOVE,
     id
 })
-/*
-const filterCharactersDetails = details => ({
-    type: DETAILS.FILTER,
-    details
-})
-*/
+
 export { 
     loadCharacters, 
     setCharacters, 

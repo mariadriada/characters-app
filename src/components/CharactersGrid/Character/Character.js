@@ -25,7 +25,7 @@ class Character extends Component {
                 </div>
                 <span>{character.name}</span>
                 
-                <img
+                <img onClick={()=>this.props.addToDetails(character.id.toString())}
                     src={character.image}
                     alt={character.name}
                 />

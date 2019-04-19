@@ -3,17 +3,18 @@ import { connect } from 'react-redux'
 
 import { loadCharacters } from '../../actions'
 import Character from './Character'
-
+import CharacterDetails from '../CharacterDetails'
 import './styles.scss'
 
 class CharactersGrid extends Component {   
 
     componentDidMount() {
+        console.log('CharactersGrid')
         this.props.loadCharacters()
     }
 
     render(){
-        const { characters, error, isLoading } = this.props;
+        const { characters, error, isLoading, filterCharactersDetails } = this.props;
         return(
             <div className="contentChatacters">
                 <section className="grid">
@@ -22,7 +23,16 @@ class CharactersGrid extends Component {
                     ))}
                 </section>
                 { isLoading && <div className="loading">...loading...</div> }
-                { error && <div className="error">{JSON.stringify(error)}</div> }                   
+                { error && <div className="error">{JSON.stringify(error)}</div> } 
+
+                <section>
+                    <CharacterDetails />
+                </section>
+
+                <button onClick={() => console.log('click')}> 
+                    details
+                </button>
+                          
             </div>
         )
     }  
@@ -31,11 +41,11 @@ class CharactersGrid extends Component {
 const mapStateToProps = ({isLoading, characters, error }) => ({
     isLoading,
     characters,
-    error,
+    error
 })
 
 const mapDispatchToProps = dispatch => ({
-    loadCharacters: () => dispatch(loadCharacters()) 
+    loadCharacters: () => dispatch(loadCharacters())  
 })
 
 export default connect(
