@@ -39,6 +39,15 @@ const removeToDetails = id => ({
     id
 })
 
+const goToDetails = history => ({
+    type: DETAILS.GO,
+    history
+})
+
+const cleatIdsDetails= () => ({
+    type: DETAILS.CLEAR,
+})
+
 export { 
     loadCharacters, 
     setCharacters, 
@@ -47,5 +56,7 @@ export {
     setCharacterDetails, 
     setCharacterDetailsError,
     addToDetails,
-    removeToDetails
+    removeToDetails,
+    goToDetails,
+    cleatIdsDetails
 }
