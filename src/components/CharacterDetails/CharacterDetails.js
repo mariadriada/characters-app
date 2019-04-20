@@ -15,8 +15,7 @@ class CharacterDetails extends Component {
         const { characters, idsDetails } = this.props
         const filter = this.filterDetails()
         return (
-            <div className="container-details">
-                contiene personajes
+            <div className="container-details">                
                 { filter.map(detail => (
                     <Detail key={detail.id} detail={detail}/>
                 )) }

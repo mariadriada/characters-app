@@ -4,7 +4,7 @@ import './styles.scss'
 
 class Detail extends Component{
     render(){
-        const { detail, key } = this.props
+        const { detail } = this.props
         return(
             <div className="detail-container" key={detail.id}>
                 <div className="detail-img">
@@ -12,16 +12,16 @@ class Detail extends Component{
                 </div>
                 <div className="detail-text">
                     <div className="detail-line">
-                        <span>Name: </span><span>{detail.name}</span>
+                        <span class="title">Name: </span><span>{detail.name}</span>
                     </div>
                     <div className="detail-line">
-                        <span>Gender: </span><span>{detail.gender}</span>
+                        <span class="title">Gender: </span><span>{detail.gender}</span>
                     </div>
                     <div className="detail-line">
-                        <span>Species: </span><span>{detail.species}</span>
+                        <span class="title">Species: </span><span>{detail.species}</span>
                     </div>
                     <div className="detail-line">
-                        <span>Type: </span><span>{detail.type}</span>
+                        <span class="title">Type: </span><span>{detail.type}</span>
                     </div>                            
                 </div>
             </div>

@@ -15,20 +15,19 @@ class Character extends Component {
     render(){
         const { character } = this.props
         return (
-            <div className="item" key={character.id}>
+            <div className="item" key={character.id}>                
                 <div className="checkDetails">
                     <input 
                         type="checkbox" 
                         value={character.id}
                         onChange={(e) => this.pressCheck(e.target)} 
-                    />More details
-                </div>
-                <span>{character.name}</span>
-                
+                    /><span>More</span>
+                </div>                
                 <img onClick={()=>this.props.addToDetails(character.id.toString())}
                     src={character.image}
                     alt={character.name}
                 />
+                <div class="name">{character.name}</div>
             </div>
         )
     }

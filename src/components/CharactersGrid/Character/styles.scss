@@ -1,16 +1,44 @@
 .item {
-    padding: 5px;
-    position: relative;
+    padding: 15px;
+    width: 250px;
+    height: 250px;
+    margin-bottom: 30px;
 
     .checkDetails {
         position: relative;
-        top: 90%;
-        left: 31%;
+        top: 97%;
+        left: 72%;
+        background-color: #ede7f6;
+        width: 60px;
+        vertical-align: baseline;
+        border-radius: 3px;
+        border: 1px solid #bbb5c3;
+        font-size: medium;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1px;
+
+        input[type="checkbox"]{
+            width: 16px;
+            height: 16px;
+            padding: 0;
+            margin: 0;
+        }
+
+        span{
+            font-weight: 400;
+            margin-bottom: 4px;
+        }
     }
 
-    span{
-        position: relative;
-        top: 50%;
+    .name{
+        font-size: 20px;
+        font-weight: 600;
+        text-align: center;
+        height: auto;
+        background-color: #d1c4e9;
+        border-radius: 5px;
     }
 
     img {
@@ -18,7 +46,7 @@
         height: 100%;
         object-fit: cover;
         border-radius: 2px;
-        box-shadow: 2px 1px 8px #62757f;
+        box-shadow: 2px 1px 8px #bbb5c3;
         
     }
 }

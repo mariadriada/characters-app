@@ -17,17 +17,19 @@ class CharactersGrid extends Component {
         const { characters, error, isLoading, filterCharactersDetails } = this.props;
         return(
             <div className="contentChatacters">
+            
                 <section className="grid">
                     {characters.map(character => (
                        <Character character={character} key={character.id}/>
                     ))}
                 </section>
-                { isLoading && <div className="loading">...loading...</div> }
-                { error && <div className="error">{JSON.stringify(error)}</div> } 
 
-                <section>
-                    <CharacterDetails />
-                </section>
+                { isLoading && <div className="loading">
+                        <h1>Rick and Morthy - Characters</h1><br/>
+                        <h2>...Loading...</h2>                    
+                </div> } 
+
+                { error && <div className="error">{JSON.stringify(error)}</div> }     
 
                 <button onClick={() => console.log('click')}> 
                     details
