@@ -1,4 +1,5 @@
-import { take, call, fork, put } from 'redux-saga/effects';
+import { take, takeEvery, call, fork, put } from 'redux-saga/effects';
+import { push } from 'react-router-redux';
 
 import { CHARACTERS, DETAILS } from '../constants'
 import { fetchCharacterDetails } from '../api'
@@ -26,18 +27,21 @@ export function* handleCharacterDetailsRequest(id){
 
 export function* handleAddToDetails(id) {  
     yield put(addToDetails(id))
+    yield(put(push('/bug')))
 }
 
 export function* handleRemoveToDetails(id){
     yield put(removeToDetails(id))
 }
-/*
-export function handleFilterCharactersDetails(){
-    console.log('handleFilterCharactersDetails')
-}*/
+
+//Change URL to details
+export function* handleDetailsGo(action){   
+    const history = action.history
+    yield history.push(history.navigateTo)
+}
 
 export default function* watchCharacterDetailsRequest(){
-   // while(true) {
+    while(true) {
         //When load characters, request details 
         const { characters } = yield take(CHARACTERS.LOAD_SUCCESS)
 
@@ -45,11 +49,8 @@ export default function* watchCharacterDetailsRequest(){
         for (let i=0; i<characters.length; i++) {
             yield fork(handleCharacterDetailsRequest, characters[i].id)
         }
-
         
-        yield take(DETAILS.ADD, handleAddToDetails)
-        yield take(DETAILS.REMOVE, handleRemoveToDetails)
-        //yield take(DETAILS.FILTER, handleFilterCharactersDetails)
-        
-    //}
+        // Go to Details page
+        yield takeEvery(DETAILS.GO, handleDetailsGo)           
+    }
 }
