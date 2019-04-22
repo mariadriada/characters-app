@@ -9,10 +9,10 @@ Data fetched from https://rickandmortyapi.com/
 
 ## Tecnologies used
 
-this project is based in React with redux, using redux-saga middleware
+This project is based in React with redux, using redux-saga middleware
 
 ## Prerrequisites
-To start this proyect in local, you need have instaled Node.js and npm
+To start this proyect in local, you need have instaled npm
 
 ## Check the url
 
