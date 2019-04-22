@@ -32,7 +32,7 @@ class CharacterDetails extends Component {
         
         return (
             <div>  
-                <section className="container-details"> 
+                <section className="container-details" onClick={() => this.props.history.goBack()}> 
                     { filter.map(detail => (
                         <Detail key={detail.id} detail={detail}/>
                     )) }

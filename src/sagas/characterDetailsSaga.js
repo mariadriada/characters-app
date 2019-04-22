@@ -1,14 +1,10 @@
 import { take, takeEvery, takeLatest , call, fork, put, select } from 'redux-saga/effects';
-import { push } from 'react-router-redux';
 
-import { CHARACTERS, DETAILS } from '../constants'
+import {  DETAILS } from '../constants'
 import { fetchCharacterDetails } from '../api'
 import { 
-    loadCharacterDetails, 
     setCharacterDetails, 
     setCharacterDetailsError,
-    addToDetails,
-    removeToDetails
 } from '../actions';
 
 export function* handleCharacterDetailsRequest(action){  

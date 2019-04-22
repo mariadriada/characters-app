@@ -25,13 +25,13 @@ class Character extends Component {
                         onChange={(e) => { 
                             (e.target.checked ? this.props.addToDetails(e.target.value) : 
                             this.props.removeToDetails(e.target.value)) &&
-                            this.setState({isActive: !this.state.isActive}) 
+                            this.setState({isActive: !this.state.isActive }) 
                         }} 
                     /><span>More</span>
                 </div>                
                 <img onClick={() => this.props.addToDetails(character.id.toString()) &&
                                     (this.context.history.navigateTo='/details') &&
-                                    this.props.goToDetails(this.context.history)}
+                                    this.props.goToDetails(this.context.history) }
                     src={character.image}
                     alt={character.name}
                 />

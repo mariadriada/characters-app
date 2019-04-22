@@ -19,4 +19,13 @@ const fetchCharacterDetails = async id => {
     return data
 }
 
-export { fetchCharacters, fetchCharacterDetails }
+const fetchCharacterSearch = async text => {
+    const response = await fetch(`${URL}/?name=${text}`)   
+    const data = await response.json()  
+    if(response.status >= 400){
+        throw new Error(data.error)
+    }   
+    return data.results
+}
+
+export { fetchCharacters, fetchCharacterDetails, fetchCharacterSearch }

@@ -12,6 +12,10 @@ class Detail extends Component{
                     <img src={detail.image} alt={detail.type} />                            
                 </div>
                 <div className="detail-text">
+                    { detail.id &&
+                    <div className="detail-line">
+                        <span className="title">Id: </span><span>{detail.id}</span>
+                    </div>} 
                    { detail.name &&
                     <div className="detail-line">
                         <span className="title">Name: </span><span>{detail.name}</span>
@@ -35,7 +39,10 @@ class Detail extends Component{
                     { detail.location.name &&
                     <div className="detail-line">
                         <span className="title">Location: </span><span>{detail.location.name}</span>
-                    </div> }                          
+                    </div> }   
+                    <div className="detail-line">
+                        <span className="title">URL: </span><span><a href={`/details/${detail.id}`}>Go to</a></span>
+                    </div>                        
                 </div>
             </div>
         )

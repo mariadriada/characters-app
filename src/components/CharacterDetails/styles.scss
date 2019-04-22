@@ -2,11 +2,12 @@
     display: flex;
     justify-content: center;    
     flex-wrap: wrap;
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
     position: relative;
     top: 138px;
     background-color: #7986cb;
     border-radius: 2px 2px 2px 2px;
     padding: 3% 0 3% 0;
+    cursor: pointer;
 }

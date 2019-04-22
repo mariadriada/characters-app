@@ -1,69 +1,82 @@
-import { CHARACTERS, DETAILS, SUBTITLE } from '../constants/index'
+import { CHARACTERS, DETAILS, SUBTITLE, FILTERS } from '../constants/index'
 
-const loadCharacters = () => ({
+/*
+* actions for Characters
+*/
+export const loadCharacters = () => ({
     type: CHARACTERS.LOAD
 })
 
-const setCharacters = characters => ({
+export const setCharacters = characters => ({
     type: CHARACTERS.LOAD_SUCCESS,
     characters
 })
 
-const setError = error => ({
+export const setError = error => ({
     type: CHARACTERS.LOAD_FAIL,
     error
 })
 
-const loadCharacterDetails = id => ({
+/*
+* actions for Characters Details
+*/
+export const loadCharacterDetails = id => ({
     type: DETAILS.LOAD,
     id
 })
 
-const setCharacterDetails = (id, details) => ({
+export const setCharacterDetails = (id, details) => ({
     type: DETAILS.LOAD_SUCCESS,
     id,
     details
 })
 
-const setCharacterDetailsError = error => ({
+export const setCharacterDetailsError = error => ({
     type: DETAILS.LOAD_FAIL,
     error
 })
 
-const addToDetails = id => ({
+export const addToDetails = id => ({
     type: DETAILS.ADD,
     id
 })
 
-const removeToDetails = id => ({
+export const removeToDetails = id => ({
     type: DETAILS.REMOVE,
     id
 })
 
-const goToDetails = history => ({
+export const goToDetails = history => ({
     type: DETAILS.GO,
     history
 })
 
-const cleatIdsDetails = () => ({
+export const cleatIdsDetails = () => ({
     type: DETAILS.CLEAR,
 })
 
-const setSubtitle = subtitle => ({
+/*
+* actions for Subtitle
+*/
+export const setSubtitle = subtitle => ({
     type: SUBTITLE.SET,
     subtitle
 })
 
-export { 
-    loadCharacters, 
-    setCharacters, 
-    setError, 
-    loadCharacterDetails, 
-    setCharacterDetails, 
-    setCharacterDetailsError,
-    addToDetails,
-    removeToDetails,
-    goToDetails,
-    cleatIdsDetails,
-    setSubtitle
-}
+/*
+* actions for Characters filters
+*/
+export const activeSearchCharacters = text => ({
+    type: FILTERS.ACTIVE,
+    text
+})
+
+export const inactiveSearchCharacters = () => ({
+    type: FILTERS.INACTIVE
+})
+
+export const setCharactersfilter = characters => ({
+    type: FILTERS.LOAD_SUCCESS,
+    characters
+})
+

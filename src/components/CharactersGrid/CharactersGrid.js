@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 
 import { loadCharacters, goToDetails, cleatIdsDetails, setSubtitle } from '../../actions'
 import Character from './Character'
+import SearchBar from '../SearchBar'
 
+import Button from '@material-ui/core/Button';
 import './styles.scss'
 
 class CharactersGrid extends Component {  
@@ -26,12 +28,14 @@ class CharactersGrid extends Component {
     }
 
     render(){
-        const { characters, error, isLoading, goToDetails } = this.props;
+        const { characters, error, isLoading, filterState, charactersFilter, goToDetails } = this.props
+        const dataCharacters = filterState ? charactersFilter : characters
         return(
-            <div>              
-                <div className="contentChatacters">            
+            <div> 
+                <div className="contentChatacters"> 
+                    <div className="search-container"><SearchBar/></div>           
                     <section className="grid">
-                        {characters.map(character => (
+                        {dataCharacters.map(character => (
                         <Character character={character} key={character.id}/>
                         ))}
                     </section>
@@ -44,10 +48,11 @@ class CharactersGrid extends Component {
                     { error && <div className="error">{JSON.stringify(error)}</div> }     
 
 
-                    <button onClick={(e) => (this.props.history.navigateTo='/details') && 
-                                            goToDetails(this.props.history) }> 
+                    <Button id="btn-go-details" variant="contained" color="primary" 
+                        onClick={(e) => (this.props.history.navigateTo='/details') && 
+                                        goToDetails(this.props.history) }> 
                         Show details
-                    </button>               
+                    </Button>               
                 </div>
             </div>
         )
@@ -59,10 +64,12 @@ CharactersGrid.childContextTypes = {
     history: PropTypes.object
 }
 
-const mapStateToProps = ({isLoading, characters, error }) => ({
+const mapStateToProps = ({isLoading, characters, error, filterState, charactersFilter }) => ({
     isLoading,
     characters,
-    error
+    error,
+    filterState,
+    charactersFilter
 })
 
 const mapDispatchToProps = dispatch => ({

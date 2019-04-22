@@ -41,4 +41,18 @@
         color: white;
         font-weight: 500;
     }
+
+    .search-container{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding-top: 35px;
+    }
+
+    #btn-go-details{
+        position: fixed;
+        top: 27%;
+        right: 1%;        
+    }
 }
+

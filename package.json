@@ -2,7 +2,9 @@
   "name": "characters-app",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {    
+  "dependencies": {
+    "@material-ui/core": "^3.9.3",
+    "@material-ui/icons": "^3.0.2",
     "node-sass": "^4.11.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
