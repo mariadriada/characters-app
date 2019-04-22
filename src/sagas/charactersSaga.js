@@ -4,7 +4,6 @@ import { CHARACTERS } from '../constants'
 import { fetchCharacters } from '../api'
 import { setCharacters, setError } from '../actions'
 
-
 export function* handleCharactersLoad(){ 
     try {       
         const characters = yield call(fetchCharacters)               
@@ -12,8 +11,7 @@ export function* handleCharactersLoad(){
     }
     catch(error){
         yield put(setError(error.toString()))
-    }
-   
+    }   
 }
 
 export default function* watchImagesLoad(){
