@@ -14,4 +14,8 @@ const DETAILS = {
     CLEAR: 'DETAILS_CLEAR_IDS'
 }
 
-export { CHARACTERS, DETAILS }
+const SUBTITLE = {
+    SET: 'SUBTITLE_SET'
+}
+
+export { CHARACTERS, DETAILS, SUBTITLE }

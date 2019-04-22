@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import './styles.scss'
 
 class Detail extends Component{
+
     render(){
         const { detail } = this.props
         return(
@@ -11,27 +12,34 @@ class Detail extends Component{
                     <img src={detail.image} alt={detail.type} />                            
                 </div>
                 <div className="detail-text">
+                   { detail.name &&
                     <div className="detail-line">
-                        <span class="title">Name: </span><span>{detail.name}</span>
-                    </div>
+                        <span className="title">Name: </span><span>{detail.name}</span>
+                    </div>}
+                    { detail.gender &&
                     <div className="detail-line">
-                        <span class="title">Gender: </span><span>{detail.gender}</span>
-                    </div>
+                        <span className="title">Gender: </span><span>{detail.gender}</span>
+                    </div>}
+                    { detail.species &&
                     <div className="detail-line">
-                        <span class="title">Species: </span><span>{detail.species}</span>
-                    </div>
+                        <span className="title">Species: </span><span>{detail.species}</span>
+                    </div> }
+                    { detail.type &&
                     <div className="detail-line">
-                        <span class="title">Type: </span><span>{detail.type}</span>
-                    </div>                            
+                        <span className="title">Type: </span><span>{detail.type}</span>
+                    </div> } 
+                    { detail.origin.name &&
+                    <div className="detail-line">
+                        <span className="title">Origin: </span><span>{detail.origin.name}</span>
+                    </div> } 
+                    { detail.location.name &&
+                    <div className="detail-line">
+                        <span className="title">Location: </span><span>{detail.location.name}</span>
+                    </div> }                          
                 </div>
             </div>
         )
     }
-}
-
-Detail.props = {
-    detail: {},
-    key: 0
 }
 
 export default Detail

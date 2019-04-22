@@ -4,7 +4,7 @@
     height: 250px;
     margin-bottom: 30px;
 
-    .checkDetails {
+    .check-details {
         position: relative;
         top: 97%;
         left: 72%;
@@ -32,13 +32,19 @@
         }
     }
 
+    .active{
+        background-color: #76d275 !important;
+        border: 1px solid #43a047;
+        color: #e8eaf6;
+    }
+
     .name{
         font-size: 20px;
         font-weight: 600;
         text-align: center;
         height: auto;
-        background-color: #d1c4e9;
-        border-radius: 5px;
+        background-color: #bbb5c3;
+        border-radius: 2px;
     }
 
     img {
@@ -46,7 +52,6 @@
         height: 100%;
         object-fit: cover;
         border-radius: 2px;
-        box-shadow: 2px 1px 8px #bbb5c3;
-        
+        box-shadow: -.5px -.5px 8px #7986cb;        
     }
 }

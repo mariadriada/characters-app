@@ -4,8 +4,11 @@ import { Provider } from 'react-redux'
 
 import CharactersGrid from './components/CharactersGrid/'
 import CharacterDetails from './components/CharacterDetails'
-
+import Header from './components/Header'
 import configureStore from './store'
+
+import './App.scss'
+
 const store = configureStore()
 
 class App extends Component {  
@@ -13,10 +16,12 @@ class App extends Component {
     return (   
       <Provider store={store}>  
         <BrowserRouter>
-          <Fragment>                        
+          <Fragment>  
+            <Header/>               
             <Switch>                    
               <Route exact path='/' component={CharactersGrid}></Route>
               <Route exact path='/details' component={CharacterDetails}></Route>
+              <Route exact path='/details/:id' component={CharacterDetails}></Route>
             </Switch>
           </Fragment>
         </BrowserRouter>

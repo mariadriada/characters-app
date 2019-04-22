@@ -7,19 +7,25 @@ import { addToDetails, removeToDetails, goToDetails } from '../../../actions'
 
 import './styles.scss'
 
-class Character extends Component {  
-   
+class Character extends Component {   
+    
+    // Initialize state to control de active/unactive status of character
+    state = {
+        isActive: false
+    }
+      
     render(){
         const { character } = this.props
         return (
             <div className="item" key={character.id}>                
-                <div className="checkDetails">
+                <div className={ this.state.isActive ? 'check-details active' : 'check-details'}>
                     <input 
                         type="checkbox" 
                         value={character.id}
-                        onChange={(e) => {
-                            e.target.checked ? this.props.addToDetails(e.target.value) : 
-                            this.props.removeToDetails(e.target.value)
+                        onChange={(e) => { 
+                            (e.target.checked ? this.props.addToDetails(e.target.value) : 
+                            this.props.removeToDetails(e.target.value)) &&
+                            this.setState({isActive: !this.state.isActive}) 
                         }} 
                     /><span>More</span>
                 </div>                
@@ -29,22 +35,16 @@ class Character extends Component {
                     src={character.image}
                     alt={character.name}
                 />
-                <div className="name">{character.name}</div>
+                <div className={ this.state.isActive ? 'name active' : 'name'}>{character.name}</div>
             </div>
         )
     }
 }
 
-// Recibe history property from parent component
+// Receives history property from parent component
 Character.contextTypes = {
     history: PropTypes.object
 }
-
-const mapStateToProps = ({isLoading, characters, history }) => ({
-    isLoading,
-    characters,
-    history
-})
 
 const mapDispatchToProps = dispatch => ({
     addToDetails: (id) => dispatch(addToDetails(id)),    
@@ -53,6 +53,6 @@ const mapDispatchToProps = dispatch => ({
 })
 
 export default withRouter(connect(
-    mapStateToProps,
+    null,
     mapDispatchToProps
 )(Character))

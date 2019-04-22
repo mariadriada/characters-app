@@ -1,4 +1,4 @@
-import { CHARACTERS, DETAILS } from '../constants/index'
+import { CHARACTERS, DETAILS, SUBTITLE } from '../constants/index'
 
 const loadCharacters = () => ({
     type: CHARACTERS.LOAD
@@ -14,8 +14,9 @@ const setError = error => ({
     error
 })
 
-const loadCharacterDetails = () => ({
-    type: DETAILS.LOAD
+const loadCharacterDetails = id => ({
+    type: DETAILS.LOAD,
+    id
 })
 
 const setCharacterDetails = (id, details) => ({
@@ -44,8 +45,13 @@ const goToDetails = history => ({
     history
 })
 
-const cleatIdsDetails= () => ({
+const cleatIdsDetails = () => ({
     type: DETAILS.CLEAR,
+})
+
+const setSubtitle = subtitle => ({
+    type: SUBTITLE.SET,
+    subtitle
 })
 
 export { 
@@ -58,5 +64,6 @@ export {
     addToDetails,
     removeToDetails,
     goToDetails,
-    cleatIdsDetails
+    cleatIdsDetails,
+    setSubtitle
 }

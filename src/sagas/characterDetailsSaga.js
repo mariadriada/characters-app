@@ -1,4 +1,4 @@
-import { take, takeEvery, call, fork, put } from 'redux-saga/effects';
+import { take, takeEvery, takeLatest , call, fork, put, select } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 
 import { CHARACTERS, DETAILS } from '../constants'
@@ -11,27 +11,24 @@ import {
     removeToDetails
 } from '../actions';
 
-export function* handleCharacterDetailsRequest(id){    
+export function* handleCharacterDetailsRequest(action){  
+    let err = ''
+    
     // To attempt three times
     for(let i=0; i<3; i++) {
-        try {            
-            yield put(loadCharacterDetails(id))
-            const res = yield call(fetchCharacterDetails, id);
-            yield put(setCharacterDetails(id, res))            
+        try {   
+            // Call to API of characters by one or more characters
+            const res = yield call(fetchCharacterDetails, action.id);
+            yield put(setCharacterDetails(action.id, res))  
             return true
         }
-        catch(error){}       
+        catch(error){
+            err = error
+            yield put(setCharacterDetailsError(error.toString()))  
+        }       
     }
-    yield put(setCharacterDetailsError(id))   
-}
-
-export function* handleAddToDetails(id) {  
-    yield put(addToDetails(id))
-    yield(put(push('/bug')))
-}
-
-export function* handleRemoveToDetails(id){
-    yield put(removeToDetails(id))
+    yield put(setCharacterDetailsError(`Error searching character(s): ${action.id}. [Details]: ${err}`)) 
+     
 }
 
 //Change URL to details
@@ -41,16 +38,12 @@ export function* handleDetailsGo(action){
 }
 
 export default function* watchCharacterDetailsRequest(){
-    while(true) {
-        //When load characters, request details 
-        const { characters } = yield take(CHARACTERS.LOAD_SUCCESS)
-
-        // Get details for each character
-        for (let i=0; i<characters.length; i++) {
-            yield fork(handleCharacterDetailsRequest, characters[i].id)
-        }
-        
+           
         // Go to Details page
-        yield takeEvery(DETAILS.GO, handleDetailsGo)           
-    }
+        yield takeEvery(DETAILS.GO, handleDetailsGo)      
+
+        // Load details data
+        const action = yield take(DETAILS.LOAD)
+        yield fork(handleCharacterDetailsRequest, action)
+    
 }
